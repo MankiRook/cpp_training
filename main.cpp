@@ -102,7 +102,7 @@ bool init()
     else
     {
         //Create window
-        pWindow = SDL_CreateWindow( "SDL Tutorial", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, NULL, NULL,
+        pWindow = SDL_CreateWindow( "SDL Tutorial", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 0, 0,
                                     SDL_WINDOW_SHOWN | SDL_WINDOW_BORDERLESS | SDL_WINDOW_MAXIMIZED |
                                     SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
         if( pWindow == nullptr )
@@ -179,14 +179,14 @@ void close()
 void random()
 {
     A.points.clear();
-    A.points.push_back(Point{ rand()%SCREEN_WIDTH, rand()%SCREEN_HEIGHT });
-    A.points.push_back(Point{ rand()%SCREEN_WIDTH, rand()%SCREEN_HEIGHT });
-    A.points.push_back(Point{ rand()%SCREEN_WIDTH, rand()%SCREEN_HEIGHT });
+    A.points.push_back(Point{ static_cast<float>(rand()%SCREEN_WIDTH), static_cast<float>(rand()%SCREEN_HEIGHT) });
+    A.points.push_back(Point{ static_cast<float>(rand()%SCREEN_WIDTH), static_cast<float>(rand()%SCREEN_HEIGHT) });
+    A.points.push_back(Point{ static_cast<float>(rand()%SCREEN_WIDTH), static_cast<float>(rand()%SCREEN_HEIGHT) });
 
     B.points.clear();
-    B.points.push_back(Point{ rand()%SCREEN_WIDTH, rand()%SCREEN_HEIGHT });
-    B.points.push_back(Point{ rand()%SCREEN_WIDTH, rand()%SCREEN_HEIGHT });
-    B.points.push_back(Point{ rand()%SCREEN_WIDTH, rand()%SCREEN_HEIGHT });
+    B.points.push_back(Point{ static_cast<float>(rand()%SCREEN_WIDTH), static_cast<float>(rand()%SCREEN_HEIGHT) });
+    B.points.push_back(Point{ static_cast<float>(rand()%SCREEN_WIDTH), static_cast<float>(rand()%SCREEN_HEIGHT) });
+    B.points.push_back(Point{ static_cast<float>(rand()%SCREEN_WIDTH), static_cast<float>(rand()%SCREEN_HEIGHT) });
 }
 void draw()
 {
@@ -200,7 +200,7 @@ void draw()
     }
 
     //Draw Polygon A
-    for(int i = 0; i<A.points.size()-1; i++)
+    for(unsigned int i = 0; i<A.points.size()-1; i++)
     {
         SDL_RenderDrawLine(pRenderer, A.points.at(i).x, A.points.at(i).y, A.points.at(i+1).x, A.points.at(i+1).y );
     }
@@ -209,7 +209,7 @@ void draw()
     SDL_RenderDrawLine(pRenderer, A.points.at(0).x, A.points.at(0).y, A.points.at(B.points.size()-1).x, A.points.at(B.points.size()-1).y );
 
     //Draw Polygon B
-    for(int t = 0; t<B.points.size()-1; t++)
+    for(unsigned int t = 0; t<B.points.size()-1; t++)
     {
         SDL_RenderDrawLine(pRenderer, B.points.at(t).x, B.points.at(t).y, B.points.at(t+1).x, B.points.at(t+1).y );
     }
